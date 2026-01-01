@@ -76,15 +76,6 @@ a:hover {
     flex-grow: 1;
 }
 
-.basket {
-    position: sticky;
-    top: 0;
-    width: 400px;
-    height: 600px;
-    background-color: black;
-    z-index: 1;
-}
-
 .mainContent_max-width {
     align-items: center;
     flex-direction: column;
@@ -157,8 +148,27 @@ a:hover {
     opacity: 0.5;
 }
 
+.content_wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    /* gap: 48px; */
+    flex-grow: 1;
+}
+
+.basket {
+    position: sticky;
+    top: 200px;
+    width: 300px;
+    height: 600px;
+    margin-top: 32px;
+    background-color: #363534;
+    border-radius: 24px 0 0 24px;
+    z-index: 1;
+}
+
 .meals {
-    width: 100%;
+    position: relative;
+    width: calc(100% + 300px);
     padding-top: 32px;
     display: flex;
     align-items: center;
@@ -166,6 +176,7 @@ a:hover {
 }
 
 .mealsHeader {
+    position: absolute;
     width: 100vw;
     color: #eee;
     background-color: #e76c1f;
@@ -177,6 +188,7 @@ a:hover {
 
 .mealContent_max-width {
     align-items: center;
+    gap: 24px;
 }
 
 .mealsLogo {
@@ -185,9 +197,12 @@ a:hover {
 }
 
 .mealList {
-    width: 100%;
+    width: calc(1440px - 300px);
+    max-width: calc(1440px - 300px);
+    margin-top: 72px;
     padding: 32px 0;
     display: flex;
+    align-items: flex-start;
     flex-direction: column;
     gap: 32px;
 }
