@@ -1,0 +1,289 @@
+/* Schriftart */
+@font-face {
+    font-family: 'raleway';
+    src: url(./assets/fonts/Raleway-VariableFont_wght.ttf);
+}
+
+/* Allgemein */
+html {
+    background-color: #e76c1f;
+    scrollbar-color: #e76c1f transparent;
+}
+
+body {
+    font-family: 'raleway';
+    font-size: 18px;
+    font-weight: 400;
+    min-height: 100vh;
+    color: black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 54px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+a {
+    color: #eee;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.content_max-width {
+    padding: 0 144px;
+    width: 1440px;
+    max-width: 1440px;
+    display: flex;
+}
+
+:root {
+    --padding-left-right: 144px;
+}
+
+/* Header */
+.header {
+    padding: 24px 0;
+    background-color: #e76c1f;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    height: 48px;
+    fill: #eee;
+}
+
+/* Main */
+.main {
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.mainContent_max-width {
+    align-items: center;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.companyPresentation {
+    width: calc(100% + (var(--padding-left-right) * 2));
+    /* padding-bottom: 32px; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mainImg {
+    width: 100%;
+    height: 40vh;
+    background-image: url(./assets/img/mainImg.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.companyName {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.companyLogo {
+    height: 256px;
+    margin-top: -128px;
+    border: 12px solid #e76c1f;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.companyNameReview {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.headerSecondColor {
+    color: #e76c1f;
+}
+
+.review {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: rgba(231, 108, 31, 0.5);
+    border-radius: 16px;
+}
+
+.reviewIcon {
+    height: 28px;
+}
+
+.reviewRating {
+    font-size: 24px;
+    font-weight: 600;
+    display: flex;
+    gap: 8px;
+}
+
+.reviewNumber {
+    font-weight: 400;
+    opacity: 0.5;
+}
+
+.meals {
+    width: 100%;
+    padding-top: 32px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mealsHeader {
+    width: calc(100% + (var(--padding-left-right) * 2));;
+    padding: 0 144px;
+    color: #eee;
+    background-color: #e76c1f;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.mealsLogo {
+    height: 104px;
+    margin-top: -32px;
+}
+
+.mealList {
+    width: 100%;
+    padding: 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.meal {
+    padding: 16px;
+    display: flex;
+    gap: 24px;
+    background-color: rgba(231, 108, 31, 0.25);
+    object-fit: contain;
+    border-radius: 16px;
+}
+
+.mealImg {
+    width: 256px;
+    height: 160px;
+    object-fit: cover;
+}
+
+.mealInfo {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.mealNamePrice {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mealBasket {
+    font-weight: 500;
+    display: flex;
+    justify-content: right;
+}
+
+.mealToBasket {
+    padding: 8px;
+    background-color: #eee;
+    border-radius: 24px;
+}
+
+/* Footer */
+.footer {
+    padding: 24px 0;
+    background-color: #e76c1f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footerContent_max-width {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 88px;
+}
+
+.footerIcon {
+    height: 28px;
+    fill: #eee;
+    opacity: 0.7;
+    vertical-align: middle;
+}
+
+/* Impressum */
+.mainImpressum {
+    align-items: normal;
+}
+
+.impressumContent_max-width {
+    flex-direction: column;
+    align-items: self-start;
+    justify-content: start;
+}
+
+.mainImpressum_section {
+    padding-top: 32px;
+}
+
+.mainImpressum-header {
+    padding: 24px 0 8px;
+}
+
+.mainImpressum-text {
+    padding: 8px 0;
+}
+
+.mainImpressum_datenschutz {
+    padding: 8px 0 32px;
+}
+
+.mainImpressum-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: none;
+    text-underline-position: none;
+    text-underline-offset: none;
+}
+
+@media (min-width: 1441px) {
+    /* Allgemein */
+    .content_max-width {
+        padding: 0;
+    }
+
+    .companyPresentation {
+        width: 100%;
+    }
+    }
