@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <header id="header" class="header">
+    <header class="header">
         <div class="content_max-width">
             <a href="index.html" class="headerLogo">
                 <svg class="logo" viewBox="0 0 93 38" xmlns="http://www.w3.org/2000/svg">
@@ -36,6 +36,7 @@
         </div>
     </header>
     <main class="main">
+        <div class="basket"></div>
         <div class="content_max-width mainContent_max-width">
             <section class="companyPresentation">
                 <header class="mainImg"></header>
@@ -66,6 +67,7 @@
             </section>
             <section class="meals">
                 <header class="mealsHeader">
+                    <div class="content_max-width mealContent_max-width">
                     <svg class="mealsLogo" viewBox="0 0 88 91" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="88" height="91" fill="url(#pattern0_55_1698)"/>
                         <defs>
@@ -76,6 +78,7 @@
                         </defs>
                     </svg>
                     <h2>Burger</h2>
+                    </div>
                 </header>
                 <main class="mealList">
                     <section class="meal">
@@ -86,8 +89,16 @@
                                 <h3 class="mealPrice">11,90€</h3>
                             </div>
                             <p class="mealDescription">Pink Beef, Cheddar, O.G. Sauce, pickled Onions, Salat, Tomate & Essiggurke</p>
-                            <div class="mealBasket">
-                                <p class="mealToBasket">Add to basket</p>
+                            <div class="mealBasket"> <!-- if meal added to basket, add class: mealAdded -->
+                                <button class="mealBasketButton">Add to basket</button> <!-- if meal added to basket, innerHTML = added 1 -->
+                                <button class="mealBasketCountUp">
+                                    <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                        <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 
+                                        288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 
+                                        512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 
+                                        352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </section>
@@ -99,8 +110,16 @@
                                 <h3 class="mealPrice">12,90€</h3>
                             </div>
                             <p class="mealDescription">Pink Beef, Cheddar, O.G. Sauce, pickled Onions, Salat, Tomate & Essiggurke</p>
-                            <div class="mealBasket">
-                                <p class="mealToBasket">Add to basket</p>
+                            <div class="mealBasket"> <!-- if meal added to basket, add class: mealAdded -->
+                                <button class="mealBasketButton">Add to basket</button> <!-- if meal added to basket, innerHTML = added 1 -->
+                                <button class="mealBasketCountUp">
+                                    <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                        <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 
+                                        288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 
+                                        512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 
+                                        352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </section>
@@ -112,8 +131,16 @@
                                 <h3 class="mealPrice">16,90€</h3>
                             </div>
                             <p class="mealDescription">Pink Beef, Cheddar, O.G. Sauce, pickled Onions, Salat, Tomate & Essiggurke</p>
-                            <div class="mealBasket">
-                                <p class="mealToBasket">Add to basket</p>
+                            <div class="mealBasket"> <!-- if meal added to basket, add class: mealAdded -->
+                                <button class="mealBasketButton">Add to basket</button> <!-- if meal added to basket, innerHTML = added 1 -->
+                                <button class="mealBasketCountUp">
+                                    <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                        <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 
+                                        288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 
+                                        512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 
+                                        352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </section>
@@ -125,8 +152,16 @@
                                 <h3 class="mealPrice">19,90€</h3>
                             </div>
                             <p class="mealDescription">Pink Beef, Cheddar, O.G. Sauce, pickled Onions, Salat, Tomate & Essiggurke</p>
-                            <div class="mealBasket">
-                                <p class="mealToBasket">Add to basket</p>
+                            <div class="mealBasket"> <!-- if meal added to basket, add class: mealAdded -->
+                                <button class="mealBasketButton">Add to basket</button> <!-- if meal added to basket, innerHTML = added 1 -->
+                                <button class="mealBasketCountUp">
+                                    <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                        <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 
+                                        288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 
+                                        512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 
+                                        352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </section>
@@ -137,7 +172,7 @@
     <footer class="footer">
         <div class="footerContent_max-width">
             <p>
-                <a href="#header" target="_blank">
+                <a href="index.html" target="_blank">
                     <svg class="footerIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                         <path d="M320 112C434.9 112 528 205.1 528 320C528 434.9 434.9 528 320 528C205.1 528 112 434.9 112 
                         320C112 205.1 205.1 112 320 112zM320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 

@@ -76,6 +76,15 @@ a:hover {
     flex-grow: 1;
 }
 
+.basket {
+    position: sticky;
+    top: 0;
+    width: 400px;
+    height: 600px;
+    background-color: black;
+    z-index: 1;
+}
+
 .mainContent_max-width {
     align-items: center;
     flex-direction: column;
@@ -157,13 +166,17 @@ a:hover {
 }
 
 .mealsHeader {
-    width: calc(100% + (var(--padding-left-right) * 2));;
-    padding: 0 144px;
+    width: 100vw;
     color: #eee;
     background-color: #e76c1f;
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 16px;
+}
+
+.mealContent_max-width {
+    align-items: center;
 }
 
 .mealsLogo {
@@ -208,15 +221,37 @@ a:hover {
 }
 
 .mealBasket {
-    font-weight: 500;
     display: flex;
     justify-content: right;
+    gap: 16px;
 }
 
-.mealToBasket {
+.mealBasket.mealAdded .mealBasketCountUp {
+    display: flex;
+    align-items: center;
+    border-radius: 16px;
+}
+
+.mealBasket.mealAdded .mealBasketButton {
+    color: #e76c1f;
+    cursor: auto;
+}
+
+.mealBasketCountUp {
+    display: none;
+}
+
+.mealBasketButton {
+    font-weight: 600;
     padding: 8px;
     background-color: #eee;
     border-radius: 24px;
+}
+
+.plusIcon {
+    height: 24px;
+    padding: 2px 6px;
+    fill: #e76c1f;
 }
 
 /* Footer */
@@ -246,6 +281,10 @@ a:hover {
 /* Impressum */
 .mainImpressum {
     align-items: normal;
+}
+
+.mainImpressum a {
+    color: #e76c1f;
 }
 
 .impressumContent_max-width {
