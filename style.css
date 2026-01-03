@@ -891,17 +891,17 @@ button {
         font-size: 28px;
     }
 
-    .basketOverlay.basketOverlayOpened .content_max-width,.mainContent_max-width,.footer {
+    /* .basketOverlay.basketOverlayOpened .content_max-width,.mainContent_max-width,.footer {
         display: none;
-    }
+    } */
 
     .basketOverlay .content_max-width,.mainContent_max-width,.footer {
         display: block;
     }
 
-    /* .basketOverlay.basketOverlayOpened .content_max-width,.mainContent_max-width,.footer {
+    .basketOverlay.basketOverlayOpened .content_max-width,.mainContent_max-width,.footer {
         display: none;
-    } */
+    }
 
     .companySite {
         gap: 24px;

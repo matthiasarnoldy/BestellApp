@@ -6,17 +6,29 @@ function renderMealsoverview() {
     let mealsOverview = document.getElementById('mealsOverview');
     mealsOverview.innerHTML = '';
 
-    for (let indexMeals = 0; indexMeals < meals.length; indexMeals++) {
-        mealsOverview.innerHTML += getMealsoverviewTemplate(indexMeals);
-        renderMeal(indexMeals);
+    for (let indexMealsArray = 0; indexMealsArray < meals.length; indexMealsArray++) {
+        mealsOverview.innerHTML += getMealsoverviewTemplate(indexMealsArray);
+        renderMeal(indexMealsArray);
     }
 }
 
-function renderMeal(indexMeals) {
-    let mealList = document.getElementById(`mealList${indexMeals}`);
+function renderMeal(indexMealsArray) {
+    let mealList = document.getElementById(`mealList${indexMealsArray}`);
     mealList.innerHTML = '';
 
-    for (let indexMeal = 0; indexMeal < meals[indexMeals].meals.length; indexMeal++) {
-        mealList.innerHTML += getMealTemplate(indexMeal, indexMeals);
+    for (let indexMeal = 0; indexMeal < meals[indexMealsArray].meals.length; indexMeal++) {
+        mealList.innerHTML += getMealTemplate(indexMeal, indexMealsArray);
     }
+}
+
+function addToBasket(indexMeal, indexMealsArray) {
+    let basketContentsDesktop = document.getElementById('basketContentsDesktop');
+    let basketContentsMobile = document.getElementById('basketContentsMobile');
+    countUp(indexMeal, indexMealsArray);
+    basketContentsDesktop.innerHTML += getMealBasketTemplate(indexMeal, indexMealsArray);
+    basketContentsMobile.innerHTML += getMealBasketTemplate(indexMeal, indexMealsArray);
+}
+
+function countUp(indexMeal, indexMealsArray) {
+    meals[indexMealsArray].meals[indexMeal].amount++;
 }
