@@ -113,7 +113,7 @@ button {
     position: sticky;
     top: 0px;
     width: 400px;
-    height: 750px;
+    height: 100vh;
     padding: 16px;
     color: #fdeadc;
     display: flex;
@@ -121,7 +121,6 @@ button {
     align-items: center;
     flex-direction: column;
     background-color: #363534;
-    border-radius: 0 0 0 24px;
     z-index: 2;
 }
 
@@ -141,7 +140,7 @@ button {
     color: #363534;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 24px;
     overflow: scroll;
 }
 
@@ -167,33 +166,33 @@ button {
 
 .basketMeal {
     width: 100%;
-    padding: 16px;
+    padding: 24px;
     background-color: #fdeadc;
     border-radius: 24px;
 }
 
 .total {
     width: 100%;
-    padding: 16px 0;
+    padding: 24px 0;
 }
 
 .amount {
-    padding: 4px 0;
+    padding: 6px 0;
     display: flex;
     justify-content: space-between;
 }
 
 .extraCosts {
-    padding-bottom: 16px;
+    padding-bottom: 24px;
 }
 
 .totalAmount {
-    padding: 16px 0;
+    padding: 24px 0;
 }
 
 .sendButton {
     width: 100%;
-    padding: 8px;
+    padding: 24px 0 0;
     display: flex;
     justify-content: center;
 }
@@ -312,6 +311,9 @@ button {
 .mealsOverview {
     width: 100%;
     padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .meals {
@@ -374,7 +376,7 @@ button {
 }
 
 .mealImg {
-    width: 256px;
+    width: 200px;
     height: 160px;
     object-fit: cover;
 }
@@ -496,7 +498,89 @@ button {
 
     /* Main */
     .basketDesktop {
+        height: 750px;
         border-radius: 0 0 24px 24px;
+    }
+
+    .basketHeader {
+        width: 100%;
+        padding: 16px 0;
+    }
+
+    .basketHeadline {
+        text-align: center;
+    }
+
+    .basketContents {
+        width: 100%;
+        height: 100%;
+        padding: 16px 0;
+        color: #363534;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        overflow: scroll;
+    }
+
+    .numberAmount {
+        padding: 16px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .mealNumber {
+        display: flex;
+        gap: 8px;
+    }
+
+    .mealNumberMinus {
+        display: none;
+    }
+
+    .basketIcon {
+        height: 24px;
+    }
+
+    .basketMeal {
+        width: 100%;
+        padding: 16px;
+        background-color: #fdeadc;
+        border-radius: 24px;
+    }
+
+    .total {
+        width: 100%;
+        padding: 16px 0;
+    }
+
+    .amount {
+        padding: 4px 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .extraCosts {
+        padding-bottom: 16px;
+    }
+
+    .totalAmount {
+        padding: 16px 0;
+    }
+
+    .sendButton {
+        width: 100%;
+        padding: 8px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .buyNow {
+        font-weight: 500;
+        padding: 12px 24px;
+        color: #fdeadc;
+        background-color: #e76c1f;
+        border-radius: 24px;
     }
 
     .companyPresentation {
@@ -572,8 +656,8 @@ button {
     }
 
     .mealImg {
-        width: 188px;
-        height: 120px;
+        width: 168px;
+        height: 128px;
     }
 
     .plusIcon {
@@ -814,6 +898,10 @@ button {
     .basketOverlay .content_max-width,.mainContent_max-width,.footer {
         display: block;
     }
+
+    /* .basketOverlay.basketOverlayOpened .content_max-width,.mainContent_max-width,.footer {
+        display: none;
+    } */
 
     .companySite {
         gap: 24px;

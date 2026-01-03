@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./styles/assets.css">
     <link rel="stylesheet" href="./style.css">
 </head>
-<body>
+<body onload="init()">
     <header class="header">
         <div class="content_max-width headerContent_max-width">
             <a href="index.html" class="headerLogo">
@@ -79,13 +79,13 @@
                     </section>
                     <nav class="mealsNavigation">
                         <div class="content_max-width mainContent_max-width navigationRow">
-                            <a class="navigationQuicklinks" href="#"><h3>Vorspeisen</h3></a>
-                            <a class="navigationQuicklinks" href="#"><h3>Hauptspeisen</h3></a>
-                            <a class="navigationQuicklinks" href="#"><h3>Sushi</h3></a>
+                            <a class="navigationQuicklinks" href="#Vorspeisen"><h3>Vorspeisen</h3></a>
+                            <a class="navigationQuicklinks" href="#Hauptspeisen"><h3>Hauptspeisen</h3></a>
+                            <a class="navigationQuicklinks" href="#Sushi"><h3>Sushi</h3></a>
                         </div>
                     </nav>
-                    <article class="mealsOverview">
-                        <section class="meals">
+                    <article id="mealsOverview" class="mealsOverview">
+                        <!-- <section class="meals">
                             <header class="mealsHeader">
                                 <img src="./assets/img/vorspeisenMain.jpg" alt="Asiatische Vorspeisen" class="mealsHeaderImg">
                                 <div class="mealsHeadline">
@@ -102,8 +102,8 @@
                                             <h3 class="mealPrice">5,90€</h3>
                                         </div>
                                         <p class="mealDescription">mit Sojabohnenpaste, Seetang und Süß-Sauer-Soße</p>
-                                        <div class="mealBasket"> <!-- if meal added to basket, add class: mealAdded -->
-                                            <button class="mealBasketButton">Add to basket</button> <!-- if meal added to basket, innerHTML = added 1 -->
+                                        <div class="mealBasket">
+                                            <button class="mealBasketButton">Add to basket</button>
                                             <button class="mealBasketCountUp">
                                                 <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                                                     <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 
@@ -123,8 +123,8 @@
                                             <h3 class="mealPrice">6,90€</h3>
                                         </div>
                                         <p class="mealDescription">mit Kokosmilch, Bambusstreifen, Kräuter Seitling</p>
-                                        <div class="mealBasket"> <!-- if meal added to basket, add class: mealAdded -->
-                                            <button class="mealBasketButton">Add to basket</button> <!-- if meal added to basket, innerHTML = added 1 -->
+                                        <div class="mealBasket">
+                                            <button class="mealBasketButton">Add to basket</button>
                                             <button class="mealBasketCountUp">
                                                 <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                                                     <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 
@@ -144,8 +144,8 @@
                                             <h3 class="mealPrice">7,90€</h3>
                                         </div>
                                         <p class="mealDescription">mit Surimi und Gurkan</p>
-                                        <div class="mealBasket"> <!-- if meal added to basket, add class: mealAdded -->
-                                            <button class="mealBasketButton">Add to basket</button> <!-- if meal added to basket, innerHTML = added 1 -->
+                                        <div class="mealBasket">
+                                            <button class="mealBasketButton">Add to basket</button>
                                             <button class="mealBasketCountUp">
                                                 <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                                                     <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 
@@ -165,8 +165,8 @@
                                             <h3 class="mealPrice">6,90€</h3>
                                         </div>
                                         <p class="mealDescription">mit einer Überraschungsfüllung, dazu Salat, Sojasauce und Sesam</p>
-                                        <div class="mealBasket"> <!-- if meal added to basket, add class: mealAdded -->
-                                            <button class="mealBasketButton">Add to basket</button> <!-- if meal added to basket, innerHTML = added 1 -->
+                                        <div class="mealBasket">
+                                            <button class="mealBasketButton">Add to basket</button>
                                             <button class="mealBasketCountUp">
                                                 <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                                                     <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 
@@ -179,7 +179,7 @@
                                     </div>
                                 </section>
                             </article>
-                        </section>
+                        </section> -->
                     </article>
                 </section>
                 <aside class="basketSlider">
