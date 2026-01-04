@@ -7,7 +7,7 @@
 
     <link rel="shortcut icon" href="./assets/icons/favicon.svg" type="image/x-icon">
 
-    <script src="./scripts/meals.js"></script>
+    <script src="./scripts/db.js"></script>
     <script src="./scripts/templates.js"></script>
     <script src="./script.js"></script>
 
@@ -33,7 +33,7 @@
                     <path d="M43.9038 1.11401C45.0918 1.11401 46.0578 1.37801 46.8018 1.90601C47.5458 2.42201 47.9178 3.29801 47.9178 4.53401C47.9178 4.99001 47.8098 5.40401 47.5938 5.77601C47.3898 6.13601 47.1198 6.44801 46.7838 6.71201C47.3358 7.00001 47.7858 7.39001 48.1338 7.88201C48.4938 8.37401 48.6738 8.99801 48.6738 9.75401C48.6738 10.882 48.2778 11.764 47.4858 12.4C46.7058 13.036 45.6618 13.354 44.3538 13.354H39.3318V1.11401H43.9038ZM43.5618 3.05801H41.6538V6.10001H43.3818C44.0298 6.10001 44.5338 5.98001 44.8938 5.74001C45.2658 5.48801 45.4518 5.09801 45.4518 4.57001C45.4518 3.99401 45.2838 3.59801 44.9478 3.38201C44.6118 3.16601 44.1498 3.05801 43.5618 3.05801ZM44.3358 7.99001H41.6538V11.428H44.1738C44.7978 11.428 45.2958 11.284 45.6678 10.996C46.0518 10.708 46.2438 10.3 46.2438 9.77201C46.2438 9.19601 46.0698 8.75801 45.7218 8.45801C45.3738 8.14601 44.9118 7.99001 44.3358 7.99001Z" fill="white"/>
                 </svg>
             </a>
-            <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+            <svg onclick="toggleBasket()" class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                 <path d="M24 48C10.7 48 0 58.7 0 72C0 85.3 10.7 96 24 96L69.3 96C73.2 
                 96 76.5 98.8 77.2 102.6L129.3 388.9C135.5 423.1 165.3 448 200.1 448L456 
                 448C469.3 448 480 437.3 480 424C480 410.7 469.3 400 456 400L200.1 400C188.5 
@@ -47,7 +47,7 @@
         </div>
     </header>
     <main class="main">
-        <div class="content_max-width mainContent_max-width">
+        <div class="content_max-width mainContent_max-width basketOpenedDNone">
             <section class="content_wrapper">
                 <section class="companySite">
                     <section class="companyPresentation">
@@ -182,7 +182,7 @@
                         </section> -->
                     </article>
                 </section>
-                <aside class="basketSlider">
+                <aside class="basketSlider basketSliderHidden">
                     <section class="basketDesktop">
                         <div class="basketHeader">
                             <h2 class="basketHeadline">Warenkorb</h2>
@@ -341,7 +341,7 @@
                 </aside>
             </section>
         </div>
-        <aside class="basketOverlay basketOverlayOpened">
+        <aside class="basketOverlay">
             <section class="basketMobile">
                 <div class="basketHeader">
                     <h2 class="basketHeadline">Warenkorb</h2>
@@ -447,7 +447,7 @@
                 <section class="total">
                     <div class="amount">
                         <p>Zwischensumme</p>
-                        <p>43,80€</p>
+                        <p id="subtotal">43,80€</p>
                     </div>
                     <div class="amount extraCosts">
                         <p>Lieferkosten</p>
@@ -467,7 +467,7 @@
             </section>
         </aside>
     </main>
-    <footer class="footer">
+    <footer class="footer basketOpenedDNone">
         <div class="footerContent_max-width">
             <p>
                 <a href="index.html" target="_blank">
@@ -479,7 +479,7 @@
                         188.3 282 188.3 235.1 235.2C188.2 282.1 188.2 358 235.1 404.9C282 451.8 357.9 451.8 404.8 404.9C414.2 
                         395.5 414.2 380.3 404.8 371C395.4 361.7 380.2 361.6 370.9 371C342.8 399.1 297.2 399.1 269.1 371z"/>
                     </svg>
-                    <span>2026 BurgerHouse</span>
+                    <span>2026 LotusGarden</span>
                 </a>
             </p>
             <a href="impressum.html">Impressum</a>

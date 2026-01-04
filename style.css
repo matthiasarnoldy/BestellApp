@@ -98,9 +98,8 @@ button {
 }
 
 .basketSlider {
-    /* display: none; */
     flex-grow: 1;
-    background-color: #eee;
+    background-color: #363534;
     box-shadow: -2px 2px 8px 0px rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
@@ -113,7 +112,7 @@ button {
     position: sticky;
     top: 0px;
     width: 400px;
-    height: 100vh;
+    height: 90vh;
     padding: 16px;
     color: #fdeadc;
     display: flex;
@@ -122,6 +121,7 @@ button {
     flex-direction: column;
     background-color: #363534;
     z-index: 2;
+    animation: basketDesktopSlideIn 0.25s ease-in-out;
 }
 
 .basketHeader {
@@ -349,6 +349,10 @@ button {
     /* display: none; */
     height: 56px;
     border-radius: 50%;
+}
+
+.mealNumberBasket {
+    cursor: pointer;
 }
 
 .mealsLogo {
@@ -801,6 +805,7 @@ button {
         align-items: center;
         flex-direction: column;
         overflow: hidden;
+        animation: basketMobileSlideIn 0.25s ease-in-out;
     }
 
     .basketHeader {
@@ -891,18 +896,6 @@ button {
         font-size: 28px;
     }
 
-    /* .basketOverlay.basketOverlayOpened .content_max-width,.mainContent_max-width,.footer {
-        display: none;
-    } */
-
-    .basketOverlay .content_max-width,.mainContent_max-width,.footer {
-        display: block;
-    }
-
-    .basketOverlay.basketOverlayOpened .content_max-width,.mainContent_max-width,.footer {
-        display: none;
-    }
-
     .companySite {
         gap: 24px;
     }
@@ -981,5 +974,26 @@ button {
 
     .footerIcon {
         height: 22px;
+    }
+}
+
+@keyframes basketMobileSlideIn {
+    0% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes basketDesktopSlideIn {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
     }
 }

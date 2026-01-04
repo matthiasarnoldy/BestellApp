@@ -1,10 +1,10 @@
-let meals = [
+let allDishes = [
     {
         "mainImg": "./assets/img/vorspeisenMain.jpg",
         "name": "Vorspeisen",
         "alt": "Asiatische Vorspeisen",
-        "appetizersSvg": "./assets/icons/vorspeisenSvg.svg",
-        "meals": [
+        "svg": "./assets/icons/vorspeisenSvg.svg",
+        "dishes": [
             {
                 "name": "Mini Frühlingsrollen",
                 "description": "mit Sojabohnenpaste, Seetang und Süß-Sauer-Soße",
@@ -39,8 +39,8 @@ let meals = [
         "mainImg": "./assets/img/hauptspeisenMain.jpg",
         "name": "Hauptspeisen",
         "alt": "Asiatische Hauptspeisen",
-        "appetizersSvg": "./assets/icons/hauptspeisenSvg.svg",
-        "meals": [
+        "svg": "./assets/icons/hauptspeisenSvg.svg",
+        "dishes": [
             {
                 "name": "Nam Bo",
                 "description": "Vietnamesischer Reisnudel mit Rindfleisch, Sesam, Cashewnüssen",
@@ -75,8 +75,8 @@ let meals = [
         "mainImg": "./assets/img/sushiMain.jpg",
         "name": "Sushi",
         "alt": "Sushi",
-        "appetizersSvg": "./assets/icons/sushiSvg.svg",
-        "meals": [
+        "svg": "./assets/icons/sushiSvg.svg",
+        "dishes": [
             {
                 "name": "Maki Set",
                 "description": "8 Tekka Maki, 8 Sake Maki, 8 Ebi Maki",
@@ -109,4 +109,4 @@ let meals = [
     },
 ];
 
-console.log(meals)
+// console.log(allDishes)

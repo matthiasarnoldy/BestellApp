@@ -1,30 +1,30 @@
-function getMealsoverviewTemplate(indexMealsArray) {
+function getMealsoverviewTemplate(indexAllDishes) {
     return `
-        <section id="${meals[indexMealsArray].name}" class="meals">
+        <section id="${allDishes[indexAllDishes].name}" class="meals">
             <header class="mealsHeader">
-                <img src="${meals[indexMealsArray].mainImg}" alt="${meals[indexMealsArray].alt}" class="mealsHeaderImg">
+                <img src="${allDishes[indexAllDishes].mainImg}" alt="${allDishes[indexAllDishes].alt}" class="mealsHeaderImg">
                 <div class="mealsHeadline">
-                    <img src="${meals[indexMealsArray].appetizersSvg}" alt="${meals[indexMealsArray].alt}" class="mealsIcon">
-                    <h2>${meals[indexMealsArray].name}</h2>
+                    <img src="${allDishes[indexAllDishes].svg}" alt="${allDishes[indexAllDishes].alt}" class="mealsIcon">
+                    <h2>${allDishes[indexAllDishes].name}</h2>
                 </div>
             </header>
-            <article id="mealList${indexMealsArray}" class="mealList"></article>
+            <article id="mealList${indexAllDishes}" class="mealList"></article>
         </section>
     `;
 }
 
-function getMealTemplate(indexMeal, indexMealsArray) {
+function getMealTemplate(indexAllDishes, indexDish) {
     return `
         <section class="meal">
-            <img src="${meals[indexMealsArray].meals[indexMeal].source}" alt="${meals[indexMealsArray].meals[indexMeal].name}" class="mealImg">
+            <img src="${allDishes[indexAllDishes].dishes[indexDish].source}" alt="${allDishes[indexAllDishes].dishes[indexDish].name}" class="mealImg">
             <div class="mealInfo">
                 <div class="mealNamePrice">
-                    <h3 class="mealName">${meals[indexMealsArray].meals[indexMeal].name}</h3>
-                    <h3 class="mealPrice">${(meals[indexMealsArray].meals[indexMeal].price).toFixed(2)}€</h3>
+                    <h3 class="mealName">${allDishes[indexAllDishes].dishes[indexDish].name}</h3>
+                    <h3 class="mealPrice">${(allDishes[indexAllDishes].dishes[indexDish].price).toFixed(2).replace('\.', ',')}€</h3>
                 </div>
-                <p class="mealDescription">${meals[indexMealsArray].meals[indexMeal].description}</p>
+                <p class="mealDescription">${allDishes[indexAllDishes].dishes[indexDish].description}</p>
                 <div class="mealBasket">
-                    <button onclick="addToBasket(${indexMeal}, ${indexMealsArray})" class="mealBasketButton">Add to basket</button>
+                    <button onclick="addToBasket(${indexDish}, ${indexAllDishes})" class="mealBasketButton">Add to basket</button>
                     <button class="mealBasketCountUp">
                         <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                             <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 
@@ -39,10 +39,10 @@ function getMealTemplate(indexMeal, indexMealsArray) {
     `;
 }
 
-function getMealBasketTemplate(indexMeal, indexMealsArray) {
+function getBasketTemplate(indexBasket) {
     return `
         <div class="basketMeal">
-            <h3>${meals[indexMealsArray].meals[indexMeal].name}</h3>
+            <h3>${saveLocal.basket[indexBasket][0]}</h3>
             <div class="numberAmount">
                 <h4 class="mealNumber">
                     <span class="mealNumberTrash">
@@ -60,7 +60,7 @@ function getMealBasketTemplate(indexMeal, indexMealsArray) {
                             320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320z"/>
                         </svg>
                     </span>
-                    <span class="mealNumberNumber">${meals[indexMealsArray].meals[indexMeal].amount}</span>
+                    <span class="mealNumberNumber">${saveLocal.basket[indexBasket][2]}</span>
                     <span class="mealNumberPlus ">
                         <svg class="basketIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                             <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 
@@ -70,7 +70,7 @@ function getMealBasketTemplate(indexMeal, indexMealsArray) {
                         </svg>
                     </span>
                 </h4>
-                <h4 class="mealAmount">${(meals[indexMealsArray].meals[indexMeal].price).toFixed(2)}€</h4>
+                <h4 class="mealAmount">${(saveLocal.basket[indexBasket][1]).toFixed(2).replace('\.', ',')}</h4>
             </div>
         </div>
     `;
