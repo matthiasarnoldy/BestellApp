@@ -1,6 +1,10 @@
 let viewportWidth = window.innerWidth;
 let saveLocal = {
-    "basket": []
+    "basket": {
+        "name": [],
+        "price": [],
+        "amount": [],
+    }
 };
 
 function init() {
@@ -34,22 +38,67 @@ function renderBasket() {
     let basketContentsMobile = document.getElementById('basketContentsMobile');
     basketContentsDesktop.innerHTML = '';
     basketContentsMobile.innerHTML = '';
-    for (let indexBasket = 0; indexBasket < saveLocal.basket.length; indexBasket++) {
+    for (let indexBasket = 0; indexBasket < saveLocal.basket.name.length; indexBasket++) {
         basketContentsDesktop.innerHTML += getBasketTemplate(indexBasket);
         basketContentsMobile.innerHTML += getBasketTemplate(indexBasket);
     }
+    calculateSubtotal();
 }
 
 function addToBasket(indexDish, indexAllDishes) {
-    let dishInfo = [];
-    dishInfo.push(allDishes[indexAllDishes].dishes[indexDish].name);
-    dishInfo.push(allDishes[indexAllDishes].dishes[indexDish].price);
+    changeButtonBasket(indexDish, indexAllDishes);
+    let indexOfDish = saveLocal.basket.name.indexOf(allDishes[indexAllDishes].dishes[indexDish].name);
     allDishes[indexAllDishes].dishes[indexDish].amount++;
-    dishInfo.push(allDishes[indexAllDishes].dishes[indexDish].amount);
-    if (true) { // if savelocal.basket includes the dishinfo dont push just count up
-        saveLocal.basket.unshift(dishInfo);
+    if (indexOfDish !== -1) {
+        saveLocal.basket.amount[indexOfDish] = allDishes[indexAllDishes].dishes[indexDish].amount;
+    } else {
+        saveLocal.basket.name.unshift(allDishes[indexAllDishes].dishes[indexDish].name);
+        saveLocal.basket.price.unshift(allDishes[indexAllDishes].dishes[indexDish].price);
+        saveLocal.basket.amount.unshift(allDishes[indexAllDishes].dishes[indexDish].amount);
     }
     renderBasket();
+}
+
+function removeFromBasket(indexBasket) {
+    saveLocal.basket.name.splice(indexBasket, 1);
+    saveLocal.basket.price.splice(indexBasket, 1);
+    saveLocal.basket.amount.splice(indexBasket, 1);
+    renderBasket();
+}
+
+function changeButtonBasket(indexDish, indexAllDishes) {
+    let mealBasket = document.getElementById(`mealBasket${indexAllDishes},${indexDish}`);
+    let mealBasketButton = document.getElementById(`mealBasketButton${indexAllDishes},${indexDish}`);
+    let mealBasketCountUp = document.getElementById(`mealBasketountUp${indexAllDishes},${indexDish}`);
+    mealBasket.classList.add('mealAdded');
+    mealBasketButton.innerHTML = 'Added ' + (allDishes[indexAllDishes].dishes[indexDish].amount + 1);
+    mealBasketCountUp.innerHTML = getCountUpTemplate();
+}
+
+function calculateSubtotal() {
+    let subtotalMobile = document.getElementById('subtotalMobile');
+    let subtotalDesktop = document.getElementById('subtotalDesktop');
+    subtotalMobile.innerHTML = '';
+    subtotalDesktop.innerHTML = '';
+    let subtotalSum = 0;
+    for (let indexSubtotal = 0; indexSubtotal < saveLocal.basket.price.length; indexSubtotal++) {
+        subtotalSum += saveLocal.basket.price[indexSubtotal] * saveLocal.basket.amount[indexSubtotal];
+    }
+    subtotalMobile.innerHTML = `${(subtotalSum).toFixed(2)}€`;
+    subtotalDesktop.innerHTML = `${(subtotalSum).toFixed(2)}€`;
+    calculateTotal(subtotalSum);
+}
+
+function calculateTotal(subtotalSum) {
+    let totalMobile = document.getElementById('totalMobile');
+    let totalDesktop = document.getElementById('totalDesktop');
+    let buyNowMobile = document.getElementById('buyNowMobile');
+    let buyNowDesktop = document.getElementById('buyNowDesktop');
+    let totalSum = subtotalSum + 5.00;
+    totalMobile.innerHTML = `${(totalSum).toFixed(2)}€`;
+    totalDesktop.innerHTML = `${(totalSum).toFixed(2)}€`;
+    buyNowMobile.innerHTML = `Bestellen (${(totalSum).toFixed(2)}€)`;
+    buyNowDesktop.innerHTML = `Bestellen (${(totalSum).toFixed(2)}€)`;
 }
 
 function toggleBasket() {
