@@ -1,4 +1,5 @@
 let viewportWidth = window.innerWidth;
+let basketVariable = [];
 let saveLocal = {
     "basket": {
         "name": [],
@@ -8,7 +9,9 @@ let saveLocal = {
 };
 
 function init() {
+    getFromLocalStorage();
     renderAll();
+    declareVariableBasket();
 }
 
 function renderAll() {
@@ -42,13 +45,13 @@ function renderBasket() {
         basketContentsDesktop.innerHTML += getBasketTemplate(indexBasket);
         basketContentsMobile.innerHTML += getBasketTemplate(indexBasket);
         basketTrashToMinus(indexBasket);
+        calculateDishPrice(indexBasket);
     }
     calculateSubtotal();
 }
 
 function addToBasket(indexDish, indexAllDishes) {
     let indexOfDish = saveLocal.basket.name.indexOf(allDishes[indexAllDishes].dishes[indexDish].name);
-    changeButtonBasket(indexDish, indexAllDishes, indexOfDish);
     if (indexOfDish !== -1) {
         saveLocal.basket.amount[indexOfDish]++;
     } else {
@@ -56,6 +59,7 @@ function addToBasket(indexDish, indexAllDishes) {
         saveLocal.basket.price.unshift(allDishes[indexAllDishes].dishes[indexDish].price);
         saveLocal.basket.amount.unshift(allDishes[indexAllDishes].dishes[indexDish].amount);
     }
+    saveToLocalStorage();
     renderBasket();
 }
 
@@ -63,16 +67,19 @@ function removeFromBasket(indexBasket) {
     saveLocal.basket.name.splice(indexBasket, 1);
     saveLocal.basket.price.splice(indexBasket, 1);
     saveLocal.basket.amount.splice(indexBasket, 1);
+    saveToLocalStorage();
     renderBasket();
 }
 
 function subtractionBasket(indexBasket) {
     saveLocal.basket.amount[indexBasket]--;
+    saveToLocalStorage();
     renderBasket();
 }
 
 function additionBasket(indexBasket) {
     saveLocal.basket.amount[indexBasket]++;
+    saveToLocalStorage();
     renderBasket();
 }
 
@@ -88,17 +95,9 @@ function basketTrashToMinus(indexBasket) {
     }
 }
 
-function changeButtonBasket(indexDish, indexAllDishes, indexOfDish) {
-    let mealBasket = document.getElementById(`mealBasket${indexAllDishes},${indexDish}`);
-    let mealBasketButton = document.getElementById(`mealBasketButton${indexAllDishes},${indexDish}`);
-    let mealBasketCountUp = document.getElementById(`mealBasketountUp${indexAllDishes},${indexDish}`);
-    mealBasket.classList.add('mealAdded');
-    if (saveLocal.basket.amount[indexOfDish] === undefined) {
-        mealBasketButton.innerHTML = 'Added 1';
-    } else {
-        mealBasketButton.innerHTML = 'Added ' + (saveLocal.basket.amount[indexOfDish] + 1);
-    }
-    mealBasketCountUp.innerHTML = getCountUpTemplate();
+function calculateDishPrice(indexBasket) {
+    let mealAmount = document.getElementById(`mealAmount${indexBasket}`);
+    mealAmount.innerHTML = `${(saveLocal.basket.price[indexBasket] * saveLocal.basket.amount[indexBasket]).toFixed(2).replace('\.', ',')}€`;
 }
 
 function calculateSubtotal() {
@@ -127,25 +126,79 @@ function calculateTotal(subtotalSum) {
     buyNowDesktop.innerHTML = `Bestellen (${(totalSum).toFixed(2)}€)`;
 }
 
-function toggleBasket() {
-    viewportWidth = window.innerWidth;
+function declareVariableBasket() {
     let basketMobile = document.querySelector('.basketOverlay');
     let basketDesktop = document.querySelector('.basketSlider');
     let basketOpenedDNone = document.querySelector('.basketOpenedDNone');
-    basketMobile.classList.toggle('basketOverlayOpened');
+    basketVariable.unshift(basketMobile);
+    basketVariable.unshift(basketDesktop);
+    basketVariable.unshift(basketOpenedDNone);
+}
+
+function toggleBasket() {
+    viewportWidth = window.innerWidth;
+    basketVariable[2].classList.toggle('basketOverlayOpened');
     if (viewportWidth <= 700) {
-        basketDesktop.style.display = "none";
-        if (basketMobile.classList.contains('basketOverlayOpened')) {
-            basketOpenedDNone.style.display = "none";
-        } else if (!basketMobile.classList.contains('basketOverlayOpened')) {
-            basketOpenedDNone.style.display = "block";
-        }
+        viewportSmaller700();
+    } else if (viewportWidth > 700) {
+        viewportBigger700();
+    }
+}
+
+window.addEventListener('resize', function() {
+    viewportWidth = window.innerWidth;
+    if (viewportWidth <= 700) {
+        viewportSmaller700();
+    } else if (viewportWidth > 700) {
+        viewportBigger700();
+    }  
+})
+
+function viewportSmaller700() {
+    basketVariable[1].style.display = "none";
+    if (basketVariable[2].classList.contains('basketOverlayOpened')) {
+        basketVariable[0].style.display = "none";
+    } else if (!basketVariable[2].classList.contains('basketOverlayOpened')) {
+        basketVariable[0].style.display = "block";
+    }
+}
+
+function viewportBigger700() {
+    basketVariable[0].style.display = "block";
+    if (basketVariable[1].style.display === "none") {
+        basketVariable[1].style.display = "block";
     } else {
-        basketOpenedDNone.style.display = "block";
-        if (basketDesktop.style.display === "none") {
-            basketDesktop.style.display = "block";
-        } else {
-            basketDesktop.style.display = "none";
-        }
+        basketVariable[1].style.display = "none";
+    }
+}
+
+function openDialog() {
+    let dialogRef = document.getElementById('orderConfirmed');
+    dialogRef.style.display = "flex";
+    dialogRef.showModal();
+    dialogRef.classList.add('opened');
+}
+
+function closeDialog() {
+    let dialogRef = document.getElementById('orderConfirmed');
+    dialogRef.style.display = "none";
+    dialogRef.close();
+    dialogRef.classList.remove('opened');
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem("basketAmount", JSON.stringify(saveLocal.basket.amount));
+    localStorage.setItem("basketName", JSON.stringify(saveLocal.basket.name));
+    localStorage.setItem("basketPrice", JSON.stringify(saveLocal.basket.price));
+}
+
+function getFromLocalStorage() {
+    let basketAmountLocal = JSON.parse(localStorage.getItem("basketAmount"));
+    let basketNameLocal = JSON.parse(localStorage.getItem("basketName"));
+    let basketPriceLocal = JSON.parse(localStorage.getItem("basketPrice"));
+    if (basketAmountLocal != null && basketNameLocal != null && basketPriceLocal != null) {
+        saveLocal.basket.amount = basketAmountLocal;
+        saveLocal.basket.name = basketNameLocal;
+        saveLocal.basket.price = basketPriceLocal;
     }
 }

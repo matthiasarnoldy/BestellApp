@@ -65,7 +65,7 @@ let allDishes = [
             {
                 "name": "Thai Curry",
                 "description": "mit Kokosmilch, Thai Currysauce, Sesam",
-                "source": "./assets/img/gyoza.jpg",
+                "source": "./assets/img/thaiCurry.jpg",
                 "price": 16.90,
                 "amount": 1
             }
@@ -108,5 +108,3 @@ let allDishes = [
         ]
     },
 ];
-
-// console.log(allDishes)
