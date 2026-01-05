@@ -174,9 +174,13 @@ function viewportBigger700() {
 
 function openDialog() {
     let dialogRef = document.getElementById('orderConfirmed');
+    saveLocal.basket.amount = [];
+    saveLocal.basket.name = [];
+    saveLocal.basket.price = [];
     dialogRef.style.display = "flex";
     dialogRef.showModal();
     dialogRef.classList.add('opened');
+    renderBasket();
 }
 
 function closeDialog() {
