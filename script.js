@@ -41,16 +41,16 @@ function renderBasket() {
     for (let indexBasket = 0; indexBasket < saveLocal.basket.name.length; indexBasket++) {
         basketContentsDesktop.innerHTML += getBasketTemplate(indexBasket);
         basketContentsMobile.innerHTML += getBasketTemplate(indexBasket);
+        basketTrashToMinus(indexBasket);
     }
     calculateSubtotal();
 }
 
 function addToBasket(indexDish, indexAllDishes) {
-    changeButtonBasket(indexDish, indexAllDishes);
     let indexOfDish = saveLocal.basket.name.indexOf(allDishes[indexAllDishes].dishes[indexDish].name);
-    allDishes[indexAllDishes].dishes[indexDish].amount++;
+    changeButtonBasket(indexDish, indexAllDishes, indexOfDish);
     if (indexOfDish !== -1) {
-        saveLocal.basket.amount[indexOfDish] = allDishes[indexAllDishes].dishes[indexDish].amount;
+        saveLocal.basket.amount[indexOfDish]++;
     } else {
         saveLocal.basket.name.unshift(allDishes[indexAllDishes].dishes[indexDish].name);
         saveLocal.basket.price.unshift(allDishes[indexAllDishes].dishes[indexDish].price);
@@ -66,12 +66,38 @@ function removeFromBasket(indexBasket) {
     renderBasket();
 }
 
-function changeButtonBasket(indexDish, indexAllDishes) {
+function subtractionBasket(indexBasket) {
+    saveLocal.basket.amount[indexBasket]--;
+    renderBasket();
+}
+
+function additionBasket(indexBasket) {
+    saveLocal.basket.amount[indexBasket]++;
+    renderBasket();
+}
+
+function basketTrashToMinus(indexBasket) {
+    let basketTrash = document.getElementById(`mealNumberTrash${indexBasket}`);
+    let basketMinus = document.getElementById(`mealNumberMinus${indexBasket}`);
+    if (saveLocal.basket.amount[indexBasket] > 1) {
+        basketTrash.style.display = "none";
+        basketMinus.style.display = "block";
+    } else if (saveLocal.basket.amount[indexBasket] <= 1) {
+        basketTrash.style.display = "block";
+        basketMinus.style.display = "none";
+    }
+}
+
+function changeButtonBasket(indexDish, indexAllDishes, indexOfDish) {
     let mealBasket = document.getElementById(`mealBasket${indexAllDishes},${indexDish}`);
     let mealBasketButton = document.getElementById(`mealBasketButton${indexAllDishes},${indexDish}`);
     let mealBasketCountUp = document.getElementById(`mealBasketountUp${indexAllDishes},${indexDish}`);
     mealBasket.classList.add('mealAdded');
-    mealBasketButton.innerHTML = 'Added ' + (allDishes[indexAllDishes].dishes[indexDish].amount + 1);
+    if (saveLocal.basket.amount[indexOfDish] === undefined) {
+        mealBasketButton.innerHTML = 'Added 1';
+    } else {
+        mealBasketButton.innerHTML = 'Added ' + (saveLocal.basket.amount[indexOfDish] + 1);
+    }
     mealBasketCountUp.innerHTML = getCountUpTemplate();
 }
 

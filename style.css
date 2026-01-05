@@ -151,9 +151,17 @@ button {
     align-items: center;
 }
 
+.mealBasketNumber {
+    cursor: pointer;
+}
+
 .mealNumber {
     display: flex;
     gap: 8px;
+}
+
+.mealNumberTrash {
+    display: block;
 }
 
 .mealNumberMinus {

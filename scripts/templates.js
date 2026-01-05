@@ -49,7 +49,7 @@ function getBasketTemplate(indexBasket) {
             <h3>${saveLocal.basket.name[indexBasket]}</h3>
             <div class="numberAmount">
                 <h4 class="mealNumber">
-                    <span onclick="removeFromBasket(${indexBasket})" class="mealNumberTrash">
+                    <span onclick="removeFromBasket(${indexBasket})" id="mealNumberTrash${indexBasket}" class="mealNumberTrash mealBasketNumber">
                         <svg class="basketIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                             <path d="M232.7 69.9L224 96L128 96C110.3 96 96 110.3 96 128C96 145.7 110.3 
                             160 128 160L512 160C529.7 160 544 145.7 544 128C544 110.3 529.7 96 512 96L416 
@@ -58,14 +58,14 @@ function getBasketTemplate(indexBasket) {
                             576 489.3 556.4 490.9 531.1L512 208z"/>
                         </svg>
                     </span>
-                    <span class="mealNumberMinus">
+                    <span onclick="subtractionBasket(${indexBasket})" id="mealNumberMinus${indexBasket}" class="mealNumberMinus mealBasketNumber">
                         <svg class="basketIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                             <path d="M96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 
                             320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320z"/>
                         </svg>
                     </span>
                     <span class="mealNumberNumber">${saveLocal.basket.amount[indexBasket]}</span>
-                    <span class="mealNumberPlus ">
+                    <span onclick="additionBasket(${indexBasket})" class="mealNumberPlus mealBasketNumber">
                         <svg class="basketIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                             <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 
                             288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 
