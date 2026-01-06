@@ -145,14 +145,14 @@ function toggleBasket() {
     }
 }
 
-window.addEventListener('resize', function() {
+function viewportValidation() {
     viewportWidth = window.innerWidth;
     if (viewportWidth <= 700) {
         viewportSmaller700();
     } else if (viewportWidth > 700) {
         viewportBigger700();
-    }  
-})
+    } 
+}
 
 function viewportSmaller700() {
     basketVariable[1].style.display = "none";
@@ -174,17 +174,19 @@ function viewportBigger700() {
 
 function openDialog() {
     let dialogRef = document.getElementById('orderConfirmed');
+    let dialogSectionRef = document.getElementById('changeToError');
     if (saveLocal.basket.amount.length !== 0 && saveLocal.basket.name.length !== 0 && saveLocal.basket.price.length !== 0) {
-        openDialogIf(dialogRef);
+        openDialogIf(dialogRef, dialogSectionRef);
     } else {
-        openDialogElse(dialogRef);
+        openDialogElse(dialogRef, dialogSectionRef);
     }
 }
 
-function openDialogIf(dialogRef) {
+function openDialogIf(dialogRef, dialogSectionRef) {
     saveLocal.basket.amount = [];
     saveLocal.basket.name = [];
     saveLocal.basket.price = [];
+    dialogSectionRef.innerHTML = getDialogTemplate();
     dialogRef.style.display = "flex";
     dialogRef.showModal();
     dialogRef.classList.add('opened');
@@ -192,9 +194,8 @@ function openDialogIf(dialogRef) {
     renderBasket();
 }
 
-function openDialogElse(dialogRef) {
-    let changeToErrorRef = document.getElementById('changeToError');
-    changeToErrorRef.innerHTML = getErrorTemplate();
+function openDialogElse(dialogRef, dialogSectionRef) {
+    dialogSectionRef.innerHTML = getErrorTemplate();
     dialogRef.style.display = "flex";
     dialogRef.showModal();
     dialogRef.classList.add('opened');

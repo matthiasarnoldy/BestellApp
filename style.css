@@ -51,6 +51,11 @@ a:hover {
 
 button {
     font-family: 'raleway';
+    transition: all 0.25s;
+}
+
+button:hover {
+    scale: 1.05;
 }
 
 .content_max-width {
@@ -211,6 +216,11 @@ button {
     color: #fdeadc;
     background-color: #e76c1f;
     border-radius: 24px;
+}
+
+.buyNow:hover {
+    color: #e76c1f;
+    background-color: #fdeadc;
 }
 
 .mainContent_max-width {
@@ -420,6 +430,14 @@ button {
     border-radius: 32px;
 }
 
+.mealBasketButton:hover {
+    background-color: #e76c1f;
+}
+
+.mealBasketButton:hover .plusIcon {
+    fill: #fdeadc;
+}
+
 .plusIcon {
     height: 24px;
     fill: #e76c1f;
@@ -551,7 +569,6 @@ dialog.opened::backdrop {
     /* Main */
     .basketDesktop {
         height: 750px;
-        border-radius: 0 0 24px 24px;
     }
 
     .basketHeader {
@@ -640,11 +657,7 @@ dialog.opened::backdrop {
     }
 
     .mealsOverview {
-        padding: 0;
-    }
-
-    .mealList {
-        padding-right: 144px;
+        padding: 0 16px;
     }
 }
 
@@ -857,7 +870,7 @@ dialog.opened::backdrop {
     }
 
     .basketHeader {
-        padding: 24px 0;
+        padding: 0 0 16px;
     }
 
     .basketHeadline {
@@ -866,8 +879,8 @@ dialog.opened::backdrop {
 
     .basketContents {
         height: 50vh;
-        padding: 24px 0;
-        gap: 24px;
+        padding: 16px 0;
+        gap: 16px;
     }
 
     .numberAmount {
@@ -908,21 +921,21 @@ dialog.opened::backdrop {
     .total {
         font-size: 22px;
         width: 100%;
-        padding: 24px 0;
+        padding: 16px 0 0;
     }
 
     .amount {
-        padding: 8px 0;
+        padding: 4px 0;
         display: flex;
         justify-content: space-between;
     }
 
     .extraCosts {
-        padding-bottom: 16px;
+        padding-bottom: 12px;
     }
 
     .totalAmount {
-        padding: 16px 0;
+        padding: 12px 0;
     }
 
     .sendButton {
