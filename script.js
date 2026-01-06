@@ -42,9 +42,10 @@ function renderBasket() {
     basketContentsDesktop.innerHTML = '';
     basketContentsMobile.innerHTML = '';
     for (let indexBasket = 0; indexBasket < saveLocal.basket.name.length; indexBasket++) {
-        basketContentsDesktop.innerHTML += getBasketTemplate(indexBasket);
-        basketContentsMobile.innerHTML += getBasketTemplate(indexBasket);
+        basketContentsDesktop.innerHTML += getBasketTemplateDesktop(indexBasket);
+        basketContentsMobile.innerHTML += getBasketTemplateMobile(indexBasket);
         basketTrashToMinus(indexBasket);
+        basketTrashToMinusMobile(indexBasket);
         calculateDishPrice(indexBasket);
     }
     calculateSubtotal();
@@ -95,6 +96,18 @@ function basketTrashToMinus(indexBasket) {
     }
 }
 
+function basketTrashToMinusMobile(indexBasket) {
+    let basketTrashMobile = document.getElementById(`mealNumberTrashMobile${indexBasket}`);
+    let basketMinusMobile = document.getElementById(`mealNumberMinusMobile${indexBasket}`);
+    if (saveLocal.basket.amount[indexBasket] > 1) {
+        basketTrashMobile.style.display = "none";
+        basketMinusMobile.style.display = "block";
+    } else if (saveLocal.basket.amount[indexBasket] <= 1) {
+        basketTrashMobile.style.display = "block";
+        basketMinusMobile.style.display = "none";
+    }
+}
+
 function calculateDishPrice(indexBasket) {
     let mealAmount = document.getElementById(`mealAmount${indexBasket}`);
     mealAmount.innerHTML = `${(saveLocal.basket.price[indexBasket] * saveLocal.basket.amount[indexBasket]).toFixed(2).replace('\.', ',')}€`;
@@ -130,14 +143,16 @@ function declareVariableBasket() {
     let basketMobile = document.querySelector('.basketOverlay');
     let basketDesktop = document.querySelector('.basketSlider');
     let basketOpenedDNone = document.querySelector('.basketOpenedDNone');
+    let basketOpenedFooterDNone = document.querySelector('.basketOpenedFooterDNone');
     basketVariable.unshift(basketMobile);
     basketVariable.unshift(basketDesktop);
     basketVariable.unshift(basketOpenedDNone);
+    basketVariable.unshift(basketOpenedFooterDNone);
 }
 
 function toggleBasket() {
     viewportWidth = window.innerWidth;
-    basketVariable[2].classList.toggle('basketOverlayOpened');
+    basketVariable[3].classList.toggle('basketOverlayOpened');
     if (viewportWidth <= 700) {
         viewportSmaller700();
     } else if (viewportWidth > 700) {
@@ -147,28 +162,32 @@ function toggleBasket() {
 
 function viewportValidation() {
     viewportWidth = window.innerWidth;
-    if (viewportWidth <= 700) {
-        viewportSmaller700();
-    } else if (viewportWidth > 700) {
-        viewportBigger700();
-    } 
+    if (basketVariable.length > 0) {
+        if (viewportWidth <= 700) {
+            viewportSmaller700();
+        } else if (viewportWidth > 700) {
+            viewportBigger700();
+        } 
+    }
 }
 
 function viewportSmaller700() {
-    basketVariable[1].style.display = "none";
-    if (basketVariable[2].classList.contains('basketOverlayOpened')) {
+    basketVariable[2].style.display = "none";
+    if (basketVariable[3].classList.contains('basketOverlayOpened')) {
+        basketVariable[1].style.display = "none";
         basketVariable[0].style.display = "none";
-    } else if (!basketVariable[2].classList.contains('basketOverlayOpened')) {
+    } else if (!basketVariable[3].classList.contains('basketOverlayOpened')) {
+        basketVariable[1].style.display = "block";
         basketVariable[0].style.display = "block";
     }
 }
 
 function viewportBigger700() {
-    basketVariable[0].style.display = "block";
-    if (basketVariable[1].style.display === "none") {
-        basketVariable[1].style.display = "block";
+    basketVariable[1].style.display = "block";
+    if (basketVariable[2].style.display === "none") {
+        basketVariable[2].style.display = "block";
     } else {
-        basketVariable[1].style.display = "none";
+        basketVariable[2].style.display = "none";
     }
 }
 

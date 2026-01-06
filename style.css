@@ -874,7 +874,7 @@ dialog.opened::backdrop {
     }
 
     .basketHeadline {
-        font-size: 40px;
+        font-size: 32px;
     }
 
     .basketContents {
@@ -911,11 +911,11 @@ dialog.opened::backdrop {
     }
 
     .basketMeal h3 {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .basketMeal h4 {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .total {
@@ -954,7 +954,7 @@ dialog.opened::backdrop {
     }
 
     .buyNow h3 {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .companySite {
