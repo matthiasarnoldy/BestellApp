@@ -911,15 +911,15 @@ dialog.opened::backdrop {
     }
 
     .basketMeal h3 {
-        font-size: 28px;
-    }
-
-    .basketMeal h4 {
         font-size: 24px;
     }
 
+    .basketMeal h4 {
+        font-size: 20px;
+    }
+
     .total {
-        font-size: 22px;
+        font-size: 18px;
         width: 100%;
         padding: 16px 0 0;
     }
@@ -954,7 +954,7 @@ dialog.opened::backdrop {
     }
 
     .buyNow h3 {
-        font-size: 28px;
+        font-size: 24px;
     }
 
     .companySite {
