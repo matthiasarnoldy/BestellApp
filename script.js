@@ -174,9 +174,27 @@ function viewportBigger700() {
 
 function openDialog() {
     let dialogRef = document.getElementById('orderConfirmed');
+    if (saveLocal.basket.amount.length !== 0 && saveLocal.basket.name.length !== 0 && saveLocal.basket.price.length !== 0) {
+        openDialogIf(dialogRef);
+    } else {
+        openDialogElse(dialogRef);
+    }
+}
+
+function openDialogIf(dialogRef) {
     saveLocal.basket.amount = [];
     saveLocal.basket.name = [];
     saveLocal.basket.price = [];
+    dialogRef.style.display = "flex";
+    dialogRef.showModal();
+    dialogRef.classList.add('opened');
+    saveToLocalStorage();
+    renderBasket();
+}
+
+function openDialogElse(dialogRef) {
+    let changeToErrorRef = document.getElementById('changeToError');
+    changeToErrorRef.innerHTML = getErrorTemplate();
     dialogRef.style.display = "flex";
     dialogRef.showModal();
     dialogRef.classList.add('opened');

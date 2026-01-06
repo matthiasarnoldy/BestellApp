@@ -88,9 +88,9 @@
                 </section>
                 <aside class="basketSlider">
                     <section class="basketDesktop">
-                        <div class="basketHeader">
+                        <header class="basketHeader">
                             <h2 class="basketHeadline">Warenkorb</h2>
-                        </div>
+                        </header>
                         <section id="basketContentsDesktop" class="basketContents"></section>
                         <section class="total">
                             <div class="amount">
@@ -118,9 +118,9 @@
         </div>
         <aside class="basketOverlay">
             <section class="basketMobile">
-                <div class="basketHeader">
+                <header class="basketHeader">
                     <h2 class="basketHeadline">Warenkorb</h2>
-                </div>
+                </header>
                 <section id="basketContentsMobile" class="basketContents"></section>
                 <section class="total">
                     <div class="amount">
@@ -165,7 +165,7 @@
     </footer>
 
     <dialog id="orderConfirmed" closedby="any">
-        <section class="orderConfirmed">
+        <section id="changeToError" class="orderConfirmed">
             <div class="closeIconContainer">
                 <svg onclick="closeDialog()" class="closeIcon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 9.70342L2.03802 15.6654C1.81496 15.8885 1.53105 16 1.18631 16C0.841572 16 0.557668 
@@ -189,8 +189,8 @@
                     </defs>
                 </svg>
             </div>
-            <h2 class="orderConfirmedHeadline">Order confirmed!</h2>
-            <h3 class="orderConfirmedSubHeadline">Your food is on the way!</h3>
+            <h2 class="orderConfirmedHeadline">Bestellung bestätigt!</h2>
+            <h3 class="orderConfirmedSubHeadline">Deine Bestellung ist auf dem Weg zu dir!</h3>
         </section>
     </dialog>
 </body>
