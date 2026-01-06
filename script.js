@@ -1,12 +1,6 @@
 let viewportWidth = window.innerWidth;
 let basketVariable = [];
-let saveLocal = {
-    "basket": {
-        "name": [],
-        "price": [],
-        "amount": [],
-    }
-};
+let basket = [];
 
 function init() {
     getFromLocalStorage();
@@ -41,7 +35,7 @@ function renderBasket() {
     let basketContentsMobile = document.getElementById('basketContentsMobile');
     basketContentsDesktop.innerHTML = '';
     basketContentsMobile.innerHTML = '';
-    for (let indexBasket = 0; indexBasket < saveLocal.basket.name.length; indexBasket++) {
+    for (let indexBasket = 0; indexBasket < basket.length; indexBasket++) {
         basketContentsDesktop.innerHTML += getBasketTemplateDesktop(indexBasket);
         basketContentsMobile.innerHTML += getBasketTemplateMobile(indexBasket);
         basketTrashToMinus(indexBasket);
@@ -52,34 +46,34 @@ function renderBasket() {
 }
 
 function addToBasket(indexDish, indexAllDishes) {
-    let indexOfDish = saveLocal.basket.name.indexOf(allDishes[indexAllDishes].dishes[indexDish].name);
+    let indexOfDish = basket.findIndex(basket => basket.name === allDishes[indexAllDishes].dishes[indexDish].name);
     if (indexOfDish !== -1) {
-        saveLocal.basket.amount[indexOfDish]++;
+        basket[indexOfDish].amount++;
     } else {
-        saveLocal.basket.name.unshift(allDishes[indexAllDishes].dishes[indexDish].name);
-        saveLocal.basket.price.unshift(allDishes[indexAllDishes].dishes[indexDish].price);
-        saveLocal.basket.amount.unshift(allDishes[indexAllDishes].dishes[indexDish].amount);
+        basket.unshift({
+            "name": allDishes[indexAllDishes].dishes[indexDish].name,
+            "price": allDishes[indexAllDishes].dishes[indexDish].price,
+            "amount": allDishes[indexAllDishes].dishes[indexDish].amount,
+        });
     }
     saveToLocalStorage();
     renderBasket();
 }
 
 function removeFromBasket(indexBasket) {
-    saveLocal.basket.name.splice(indexBasket, 1);
-    saveLocal.basket.price.splice(indexBasket, 1);
-    saveLocal.basket.amount.splice(indexBasket, 1);
+    basket.splice(indexBasket, 1);
     saveToLocalStorage();
     renderBasket();
 }
 
 function subtractionBasket(indexBasket) {
-    saveLocal.basket.amount[indexBasket]--;
+    basket[indexBasket].amount--;
     saveToLocalStorage();
     renderBasket();
 }
 
 function additionBasket(indexBasket) {
-    saveLocal.basket.amount[indexBasket]++;
+    basket[indexBasket].amount++;
     saveToLocalStorage();
     renderBasket();
 }
@@ -87,10 +81,10 @@ function additionBasket(indexBasket) {
 function basketTrashToMinus(indexBasket) {
     let basketTrash = document.getElementById(`mealNumberTrash${indexBasket}`);
     let basketMinus = document.getElementById(`mealNumberMinus${indexBasket}`);
-    if (saveLocal.basket.amount[indexBasket] > 1) {
+    if (basket[indexBasket].amount > 1) {
         basketTrash.style.display = "none";
         basketMinus.style.display = "block";
-    } else if (saveLocal.basket.amount[indexBasket] <= 1) {
+    } else if (basket[indexBasket].amount <= 1) {
         basketTrash.style.display = "block";
         basketMinus.style.display = "none";
     }
@@ -99,10 +93,10 @@ function basketTrashToMinus(indexBasket) {
 function basketTrashToMinusMobile(indexBasket) {
     let basketTrashMobile = document.getElementById(`mealNumberTrashMobile${indexBasket}`);
     let basketMinusMobile = document.getElementById(`mealNumberMinusMobile${indexBasket}`);
-    if (saveLocal.basket.amount[indexBasket] > 1) {
+    if (basket[indexBasket].amount > 1) {
         basketTrashMobile.style.display = "none";
         basketMinusMobile.style.display = "block";
-    } else if (saveLocal.basket.amount[indexBasket] <= 1) {
+    } else if (basket[indexBasket].amount <= 1) {
         basketTrashMobile.style.display = "block";
         basketMinusMobile.style.display = "none";
     }
@@ -110,7 +104,7 @@ function basketTrashToMinusMobile(indexBasket) {
 
 function calculateDishPrice(indexBasket) {
     let mealAmount = document.getElementById(`mealAmount${indexBasket}`);
-    mealAmount.innerHTML = `${(saveLocal.basket.price[indexBasket] * saveLocal.basket.amount[indexBasket]).toFixed(2).replace('\.', ',')}€`;
+    mealAmount.innerHTML = `${(basket[indexBasket].price * basket[indexBasket].amount).toFixed(2).replace('\.', ',')}€`;
 }
 
 function calculateSubtotal() {
@@ -119,8 +113,8 @@ function calculateSubtotal() {
     subtotalMobile.innerHTML = '';
     subtotalDesktop.innerHTML = '';
     let subtotalSum = 0;
-    for (let indexSubtotal = 0; indexSubtotal < saveLocal.basket.price.length; indexSubtotal++) {
-        subtotalSum += saveLocal.basket.price[indexSubtotal] * saveLocal.basket.amount[indexSubtotal];
+    for (let indexSubtotal = 0; indexSubtotal < basket.length; indexSubtotal++) {
+        subtotalSum += basket[indexSubtotal].price * basket[indexSubtotal].amount;
     }
     subtotalMobile.innerHTML = `${(subtotalSum).toFixed(2)}€`;
     subtotalDesktop.innerHTML = `${(subtotalSum).toFixed(2)}€`;
@@ -194,7 +188,7 @@ function viewportBigger700() {
 function openDialog() {
     let dialogRef = document.getElementById('orderConfirmed');
     let dialogSectionRef = document.getElementById('changeToError');
-    if (saveLocal.basket.amount.length !== 0 && saveLocal.basket.name.length !== 0 && saveLocal.basket.price.length !== 0) {
+    if (basket.length !== 0) {
         openDialogIf(dialogRef, dialogSectionRef);
     } else {
         openDialogElse(dialogRef, dialogSectionRef);
@@ -202,9 +196,7 @@ function openDialog() {
 }
 
 function openDialogIf(dialogRef, dialogSectionRef) {
-    saveLocal.basket.amount = [];
-    saveLocal.basket.name = [];
-    saveLocal.basket.price = [];
+    basket = [];
     dialogSectionRef.innerHTML = getDialogTemplate();
     dialogRef.style.display = "flex";
     dialogRef.showModal();
@@ -229,18 +221,12 @@ function closeDialog() {
 }
 
 function saveToLocalStorage() {
-    localStorage.setItem("basketAmount", JSON.stringify(saveLocal.basket.amount));
-    localStorage.setItem("basketName", JSON.stringify(saveLocal.basket.name));
-    localStorage.setItem("basketPrice", JSON.stringify(saveLocal.basket.price));
+    localStorage.setItem("basket", JSON.stringify(basket));
 }
 
 function getFromLocalStorage() {
-    let basketAmountLocal = JSON.parse(localStorage.getItem("basketAmount"));
-    let basketNameLocal = JSON.parse(localStorage.getItem("basketName"));
-    let basketPriceLocal = JSON.parse(localStorage.getItem("basketPrice"));
-    if (basketAmountLocal != null && basketNameLocal != null && basketPriceLocal != null) {
-        saveLocal.basket.amount = basketAmountLocal;
-        saveLocal.basket.name = basketNameLocal;
-        saveLocal.basket.price = basketPriceLocal;
+    let basketLocal = JSON.parse(localStorage.getItem("basket"));
+    if (basketLocal != null) {
+        basket = basketLocal;
     }
 }

@@ -41,7 +41,7 @@ function getMealTemplate(indexAllDishes, indexDish) {
 function getBasketTemplateDesktop(indexBasket) {
     return `
         <div class="basketMeal">
-            <h3>${saveLocal.basket.name[indexBasket]}</h3>
+            <h3>${basket[indexBasket].name}</h3>
             <div class="numberAmount">
                 <h4 class="mealNumber">
                     <span onclick="removeFromBasket(${indexBasket})" id="mealNumberTrash${indexBasket}" class="mealNumberTrash mealBasketNumber">
@@ -59,7 +59,7 @@ function getBasketTemplateDesktop(indexBasket) {
                             320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320z"/>
                         </svg>
                     </span>
-                    <span class="mealNumberNumber">${saveLocal.basket.amount[indexBasket]}</span>
+                    <span class="mealNumberNumber">${basket[indexBasket].amount}</span>
                     <span onclick="additionBasket(${indexBasket})" class="mealNumberPlus mealBasketNumber">
                         <svg class="basketIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                             <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 
@@ -69,7 +69,7 @@ function getBasketTemplateDesktop(indexBasket) {
                         </svg>
                     </span>
                 </h4>
-                <h4 id="mealAmount${indexBasket}" class="mealAmount">${(saveLocal.basket.price[indexBasket]).toFixed(2).replace('\.', ',')}</h4>
+                <h4 id="mealAmount${indexBasket}" class="mealAmount">${(basket[indexBasket].price).toFixed(2).replace('\.', ',')}</h4>
             </div>
         </div>
     `;
@@ -78,7 +78,7 @@ function getBasketTemplateDesktop(indexBasket) {
 function getBasketTemplateMobile(indexBasket) {
     return `
         <div class="basketMeal">
-            <h3>${saveLocal.basket.name[indexBasket]}</h3>
+            <h3>${basket[indexBasket].name}</h3>
             <div class="numberAmount">
                 <h4 class="mealNumber">
                     <span onclick="removeFromBasket(${indexBasket})" id="mealNumberTrashMobile${indexBasket}" class="mealNumberTrash mealBasketNumber">
@@ -96,7 +96,7 @@ function getBasketTemplateMobile(indexBasket) {
                             320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320z"/>
                         </svg>
                     </span>
-                    <span class="mealNumberNumber">${saveLocal.basket.amount[indexBasket]}</span>
+                    <span class="mealNumberNumber">${basket[indexBasket].amount}</span>
                     <span onclick="additionBasket(${indexBasket})" class="mealNumberPlus mealBasketNumber">
                         <svg class="basketIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                             <path d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 
@@ -106,7 +106,7 @@ function getBasketTemplateMobile(indexBasket) {
                         </svg>
                     </span>
                 </h4>
-                <h4 id="mealAmount${indexBasket}" class="mealAmount">${(saveLocal.basket.price[indexBasket]).toFixed(2).replace('\.', ',')}</h4>
+                <h4 id="mealAmount${indexBasket}" class="mealAmount">${(basket[indexBasket].price).toFixed(2).replace('\.', ',')}</h4>
             </div>
         </div>
     `;
