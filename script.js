@@ -13,6 +13,11 @@ function renderAll() {
     renderBasket();
 }
 
+function saveRender() {
+    saveToLocalStorage();
+    renderBasket();
+}
+
 function renderAllDishes() {
     let mealsOverview = document.getElementById('mealsOverview');
     mealsOverview.innerHTML = '';
@@ -56,26 +61,22 @@ function addToBasket(indexDish, indexAllDishes) {
             "amount": allDishes[indexAllDishes].dishes[indexDish].amount,
         });
     }
-    saveToLocalStorage();
-    renderBasket();
+    saveRender();
 }
 
 function removeFromBasket(indexBasket) {
     basket.splice(indexBasket, 1);
-    saveToLocalStorage();
-    renderBasket();
+    saveRender();
 }
 
 function subtractionBasket(indexBasket) {
     basket[indexBasket].amount--;
-    saveToLocalStorage();
-    renderBasket();
+    saveRender();
 }
 
 function additionBasket(indexBasket) {
     basket[indexBasket].amount++;
-    saveToLocalStorage();
-    renderBasket();
+    saveRender();
 }
 
 function basketTrashToMinus(indexBasket) {
@@ -201,8 +202,7 @@ function openDialogIf(dialogRef, dialogSectionRef) {
     dialogRef.style.display = "flex";
     dialogRef.showModal();
     dialogRef.classList.add('opened');
-    saveToLocalStorage();
-    renderBasket();
+    saveRender();
 }
 
 function openDialogElse(dialogRef, dialogSectionRef) {
